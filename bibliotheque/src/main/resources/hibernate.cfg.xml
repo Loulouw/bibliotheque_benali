@@ -12,8 +12,8 @@
 		</property>
 
 		<property name="hibernate.connection.url">jdbc:mariadb://localhost:3306/bibliotheque</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password"></property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password"></property>
 		<property name="connection.autoReconnect">true</property>
 		<property name="connection.autoReconnectForPools">true</property>
 		<property name="connection.is-connection-validation-required">true</property>
@@ -28,6 +28,15 @@
 
 		<!-- mettre ici le mapping vers le fichier de correspondance entre les 
 			atributs de la classe et la table -->
+
+		<mapping class="fr.ul.miage.bibliotheque.entite.Auteur" />
+		<mapping class="fr.ul.miage.bibliotheque.entite.Emprunt" />
+		<mapping class="fr.ul.miage.bibliotheque.entite.Etat" />
+		<mapping class="fr.ul.miage.bibliotheque.entite.Exemplaire" />
+		<mapping class="fr.ul.miage.bibliotheque.entite.Oeuvre" />
+		<mapping class="fr.ul.miage.bibliotheque.entite.Reservation" />
+		<mapping class="fr.ul.miage.bibliotheque.entite.TypeOeuvre" />
+		<mapping class="fr.ul.miage.bibliotheque.entite.Usager" />
 
 	</session-factory>
 
