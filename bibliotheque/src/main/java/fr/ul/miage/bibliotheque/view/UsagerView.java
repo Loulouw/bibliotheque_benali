@@ -15,11 +15,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class UsagerView {
+public class UsagerView implements View {
 
-	private UsagerControl usagerControl = new UsagerControl();
+	@Override
+	public Pane getPane() {
 
-	public UsagerView(Pane root) {
 		GridPane gp = new GridPane();
 		gp.setAlignment(Pos.CENTER);
 		gp.setHgap(10);
@@ -56,13 +56,10 @@ public class UsagerView {
 		gp.add(dateNaissancePicker, 1, 4);
 
 		final Button ajoutUsager = new Button("Ajouter usager");
-		ajoutUsager.setOnAction(event -> {
-			usagerControl.ajouterUsager(prenomTexte.getText(), nomTexte.getText(), communeTexte.getText(),
-					dateNaissancePicker.getValue());
-		});
+		ajoutUsager.setOnAction(event -> UsagerControl.ajouterUsager(prenomTexte.getText(), nomTexte.getText(),
+				communeTexte.getText(), dateNaissancePicker.getValue()));
 		gp.add(ajoutUsager, 1, 5);
-
-		root.getChildren().add(gp);
+		return gp;
 	}
 
 }

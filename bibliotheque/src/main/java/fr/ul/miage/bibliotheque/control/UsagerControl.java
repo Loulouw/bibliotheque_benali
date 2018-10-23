@@ -8,7 +8,7 @@ import fr.ul.miage.bibliotheque.util.Utils;
 
 public class UsagerControl {
 
-	public boolean ajouterUsager(String prenom, String nom, String commune, LocalDate dateNaissance) {
+	public static boolean ajouterUsager(String prenom, String nom, String commune, LocalDate dateNaissance) {
 		boolean res = true;
 		try {
 			Usager usager = new Usager(prenom, nom, commune, Utils.localDateToDate(dateNaissance));
