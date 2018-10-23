@@ -1,5 +1,5 @@
 package fr.ul.miage.bibliotheque.entite;
-// Generated 3 oct. 2018 12:26:21 by Hibernate Tools 5.0.6.Final
+// Generated 8 oct. 2018 10:15:55 by Hibernate Tools 5.0.6.Final
 
 import java.util.Date;
 import javax.persistence.Column;
