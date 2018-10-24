@@ -28,6 +28,11 @@ public class Auteur implements java.io.Serializable {
 
 	public Auteur() {
 	}
+	
+	public Auteur(String prenom, String nom) {
+		this.prenom = prenom;
+		this.nom = nom;
+	}
 
 	public Auteur(String prenom, String nom, Set<Oeuvre> oeuvres) {
 		this.prenom = prenom;
@@ -75,6 +80,10 @@ public class Auteur implements java.io.Serializable {
 
 	public void setOeuvres(Set<Oeuvre> oeuvres) {
 		this.oeuvres = oeuvres;
+	}
+	
+	public String toString() {
+		return prenom + " " + nom;
 	}
 
 }

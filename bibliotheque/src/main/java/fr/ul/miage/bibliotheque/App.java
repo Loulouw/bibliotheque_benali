@@ -1,5 +1,6 @@
 package fr.ul.miage.bibliotheque;
 
+import fr.ul.miage.bibliotheque.view.AuteurView;
 import fr.ul.miage.bibliotheque.view.UsagerView;
 import fr.ul.miage.bibliotheque.view.View;
 import javafx.application.Application;
@@ -27,7 +28,8 @@ public class App extends Application {
 		TabPane tabPane = new TabPane();
 
 		tabPane.getTabs().add(createTabPane("Usager", new UsagerView()));
-
+		tabPane.getTabs().add(createTabPane("Auteur", new AuteurView()));
+		
 		root.getChildren().add(tabPane);
 		primaryStage.setScene(new Scene(root, 500, 450));
 		primaryStage.show();
