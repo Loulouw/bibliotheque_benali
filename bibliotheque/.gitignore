@@ -2,3 +2,7 @@
 .classpath
 .project
 /.settings/
+misc.xml
+modules.xmml
+workspace.xml
+bibliotheque.iml

@@ -39,11 +39,13 @@ public class Oeuvre implements java.io.Serializable {
 	public Oeuvre() {
 	}
 
-	public Oeuvre(TypeOeuvre typeOeuvre, String titre, String isbn, int nbResa) {
+	public Oeuvre(TypeOeuvre typeOeuvre, String titre, String isbn, Set<Auteur> auteurs, Date dateCreation) {
 		this.typeOeuvre = typeOeuvre;
 		this.titre = titre;
 		this.isbn = isbn;
-		this.nbResa = nbResa;
+		this.nbResa = 0;
+		this.dateCreation = dateCreation;
+		this.auteurs = new HashSet<>(auteurs);
 	}
 
 	public Oeuvre(TypeOeuvre typeOeuvre, String titre, String isbn, Date dateCreation, int nbResa, Set<Auteur> auteurs,
@@ -70,7 +72,7 @@ public class Oeuvre implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_type_oeuvre", nullable = false)
 	public TypeOeuvre getTypeOeuvre() {
 		return this.typeOeuvre;
@@ -117,7 +119,7 @@ public class Oeuvre implements java.io.Serializable {
 		this.nbResa = nbResa;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "auteur_has_oeuvre", catalog = "bibliotheque", joinColumns = {
 			@JoinColumn(name = "oeuvre_id", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "auteur_id", nullable = false, updatable = false) })
@@ -145,6 +147,10 @@ public class Oeuvre implements java.io.Serializable {
 
 	public void setReservations(Set<Reservation> reservations) {
 		this.reservations = reservations;
+	}
+
+	public String toString() {
+		return titre;
 	}
 
 }

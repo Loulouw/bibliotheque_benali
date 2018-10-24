@@ -66,4 +66,8 @@ public class TypeOeuvre implements java.io.Serializable {
 		this.oeuvres = oeuvres;
 	}
 
+	public String toString() {
+		return libelle;
+	}
+
 }
