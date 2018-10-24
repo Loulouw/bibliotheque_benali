@@ -24,10 +24,12 @@ import javafx.scene.text.Text;
 
 public class UsagerView implements View {
 
-	private UsagerControl usagerControl = new UsagerControl();
+	private UsagerControl usagerControl;
 
 	@Override
 	public Pane getPane() {
+		usagerControl = new UsagerControl();
+				
 		HBox hbox = new HBox();
 		hbox.setPadding(new Insets(15, 12, 15, 12));
 		hbox.setSpacing(10);

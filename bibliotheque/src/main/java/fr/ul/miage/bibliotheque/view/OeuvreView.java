@@ -25,10 +25,12 @@ import javafx.scene.text.Text;
 
 public class OeuvreView implements View {
 
-	private OeuvreControl oeuvreControl = new OeuvreControl();
+	private OeuvreControl oeuvreControl;
 
 	@Override
 	public Pane getPane() {
+		oeuvreControl = new OeuvreControl();
+		
 		HBox hbox = new HBox();
 		hbox.setPadding(new Insets(15, 12, 15, 12));
 		hbox.setSpacing(10);

@@ -10,10 +10,11 @@ import fr.ul.miage.bibliotheque.entite.Oeuvre;
 import fr.ul.miage.bibliotheque.entite.TypeOeuvre;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 
 public class OeuvreControl {
 
-	private ObservableList<Oeuvre> listeOeuvre;
+	private ObservableSet<Oeuvre> listeOeuvre;
 
 	private ObservableList<Auteur> listeAuteur;
 
@@ -41,8 +42,9 @@ public class OeuvreControl {
 	}
 
 	public ObservableList<Oeuvre> getAllOeuvre() {
-		listeOeuvre = FXCollections.observableArrayList(OeuvreDao.getInstance().findAll());
-		return listeOeuvre;
+		listeOeuvre = FXCollections.observableSet();
+		listeOeuvre.addAll(OeuvreDao.getInstance().findAll());
+		return FXCollections.observableArrayList(listeOeuvre);
 	}
 
 	public ObservableList<Auteur> getAuteursDisponible() {

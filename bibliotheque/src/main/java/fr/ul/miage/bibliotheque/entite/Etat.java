@@ -65,5 +65,9 @@ public class Etat implements java.io.Serializable {
 	public void setExemplaires(Set<Exemplaire> exemplaires) {
 		this.exemplaires = exemplaires;
 	}
+	
+	public String toString() {
+		return libelle;
+	}
 
 }

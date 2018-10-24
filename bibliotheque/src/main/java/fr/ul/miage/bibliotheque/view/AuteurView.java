@@ -18,10 +18,12 @@ import javafx.scene.text.Text;
 
 public class AuteurView implements View{
 
-	private AuteurControl auteurControl = new AuteurControl();
+	private AuteurControl auteurControl;
 	
 	@Override
 	public Pane getPane() {
+		auteurControl = new AuteurControl();
+				
 		HBox hbox = new HBox();
 		hbox.setPadding(new Insets(15, 12, 15, 12));
 		hbox.setSpacing(10);

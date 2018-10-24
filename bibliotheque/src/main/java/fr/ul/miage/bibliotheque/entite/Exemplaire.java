@@ -52,7 +52,7 @@ public class Exemplaire implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_etat", nullable = false)
 	public Etat getEtat() {
 		return this.etat;

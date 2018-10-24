@@ -1,6 +1,7 @@
 package fr.ul.miage.bibliotheque;
 
 import fr.ul.miage.bibliotheque.view.AuteurView;
+import fr.ul.miage.bibliotheque.view.ExemplaireView;
 import fr.ul.miage.bibliotheque.view.OeuvreView;
 import fr.ul.miage.bibliotheque.view.UsagerView;
 import fr.ul.miage.bibliotheque.view.View;
@@ -31,6 +32,7 @@ public class App extends Application {
 		tabPane.getTabs().add(createTabPane("Usager", new UsagerView()));
 		tabPane.getTabs().add(createTabPane("Auteur", new AuteurView()));
 		tabPane.getTabs().add(createTabPane("Oeuvre", new OeuvreView()));
+		tabPane.getTabs().add(createTabPane("Exemplaire", new ExemplaireView()));
 
 		root.getChildren().add(tabPane);
 		primaryStage.setScene(new Scene(root, 500, 450));

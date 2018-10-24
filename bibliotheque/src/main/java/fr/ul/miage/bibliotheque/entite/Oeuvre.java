@@ -131,7 +131,7 @@ public class Oeuvre implements java.io.Serializable {
 		this.auteurs = auteurs;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "oeuvre")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "oeuvre")
 	public Set<Exemplaire> getExemplaires() {
 		return this.exemplaires;
 	}
@@ -152,5 +152,53 @@ public class Oeuvre implements java.io.Serializable {
 	public String toString() {
 		return titre;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dateCreation == null) ? 0 : dateCreation.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
+		result = prime * result + nbResa;
+		result = prime * result + ((titre == null) ? 0 : titre.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Oeuvre other = (Oeuvre) obj;
+		if (dateCreation == null) {
+			if (other.dateCreation != null)
+				return false;
+		} else if (!dateCreation.equals(other.dateCreation))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (isbn == null) {
+			if (other.isbn != null)
+				return false;
+		} else if (!isbn.equals(other.isbn))
+			return false;
+		if (nbResa != other.nbResa)
+			return false;
+		if (titre == null) {
+			if (other.titre != null)
+				return false;
+		} else if (!titre.equals(other.titre))
+			return false;
+		return true;
+	}
+	
+	
 
 }
