@@ -11,5 +11,11 @@ public class Utils {
 		Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
 		return Date.from(instant);
 	}
+	
+	public static LocalDate dateToLocalDate(Date dateToConvert) {
+	    return Instant.ofEpochMilli(dateToConvert.getTime())
+	      .atZone(ZoneId.systemDefault())
+	      .toLocalDate();
+	}
 
 }

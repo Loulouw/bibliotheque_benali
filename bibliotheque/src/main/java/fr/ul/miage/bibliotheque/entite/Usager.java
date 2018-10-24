@@ -116,5 +116,9 @@ public class Usager implements java.io.Serializable {
 	public void setReservations(Set<Reservation> reservations) {
 		this.reservations = reservations;
 	}
+	
+	public String toString() {
+		return this.prenom + " " + this.nom;
+	}
 
 }

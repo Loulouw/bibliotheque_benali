@@ -29,7 +29,7 @@ public class App extends Application {
 		tabPane.getTabs().add(createTabPane("Usager", new UsagerView()));
 
 		root.getChildren().add(tabPane);
-		primaryStage.setScene(new Scene(root, 1000, 900));
+		primaryStage.setScene(new Scene(root, 500, 450));
 		primaryStage.show();
 
 	}
