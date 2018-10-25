@@ -62,7 +62,7 @@ public class ReservationView implements View {
 		reserver.setPrefHeight(40);
 		reserver.setPrefWidth(300);
 		reserver.setOnAction(event -> {
-			boolean trouve = reservationControl.rechercherEmprunt(titreOeuvre.getText(), nomUtilisateur.getText(),
+			boolean trouve = reservationControl.rechercherReservation(titreOeuvre.getText(), nomUtilisateur.getText(),
 					prenomUtilisateur.getText());
 			if (trouve) {
 				Alert alert = new Alert(AlertType.CONFIRMATION);

@@ -43,6 +43,7 @@ public class ExemplaireControl {
 		Exemplaire exemplaire = new Exemplaire(EtatDao.getInstance().find(1),
 				OeuvreDao.getInstance().find(oeuvreEnCours.getId()));
 		ExemplaireDao.getInstance().create(exemplaire);
+		oeuvreEnCours.getExemplaires().add(exemplaire);
 		listeExemplaire.add(exemplaire);
 	}
 }

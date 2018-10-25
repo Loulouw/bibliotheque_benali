@@ -119,6 +119,8 @@ public class OeuvreView implements View {
 		ajoutUsager.setOnAction(event -> {
 			oeuvreControl.ajouterOeuvre(titreTexte.getText(), isbnTexte.getText(), listAuteur.getItems(),
 					listeTypeOeuvre.getValue(), Utils.localDateToDate(dateCreationPicker.getValue()));
+			list.setItems(oeuvreControl.getAllOeuvre());
+			list.refresh();
 		});
 		gp.add(ajoutUsager, 1, 8);
 

@@ -56,7 +56,7 @@ public class AuteurView implements View{
 
 		final Button mettreAJourUsager = new Button("Mettre à jour");
 		mettreAJourUsager.setOnAction(event -> {
-			auteurControl.updateUsager(prenomTexte.getText(), nomTexte.getText());
+			auteurControl.updateAuteur(prenomTexte.getText(), nomTexte.getText());
 			list.refresh();
 
 		});
@@ -65,7 +65,7 @@ public class AuteurView implements View{
 
 		final Button ajoutUsager = new Button("Ajouter auteur");
 		ajoutUsager.setOnAction(event -> {
-			auteurControl.ajouterUsager(prenomTexte.getText(), nomTexte.getText());
+			auteurControl.ajouterAuteur(prenomTexte.getText(), nomTexte.getText());
 		});
 		gp.add(ajoutUsager, 1, 5);
 

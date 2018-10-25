@@ -30,7 +30,7 @@ public class ReservationControl {
 		return FXCollections.observableArrayList(listeReservation);
 	}
 
-	public boolean rechercherEmprunt(String titreOeuvre, String nomUsager, String prenomUsager) {
+	public boolean rechercherReservation(String titreOeuvre, String nomUsager, String prenomUsager) {
 		usagerTemp = UsagerDao.getInstance().find(nomUsager, prenomUsager);
 		oeuvreTemp = OeuvreDao.getInstance().find(titreOeuvre);
 

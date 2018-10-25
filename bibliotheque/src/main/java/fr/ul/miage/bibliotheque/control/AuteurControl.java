@@ -10,7 +10,7 @@ public class AuteurControl {
 
 	private Auteur auteurEnCours = null;
 
-	public boolean ajouterUsager(String prenom, String nom) {
+	public boolean ajouterAuteur(String prenom, String nom) {
 		boolean res = true;
 		try {
 			auteurEnCours = new Auteur(prenom, nom);
@@ -22,7 +22,7 @@ public class AuteurControl {
 		return res;
 	}
 
-	public void updateUsager(String prenom, String nom) {
+	public void updateAuteur(String prenom, String nom) {
 		auteurEnCours.setPrenom(prenom);
 		auteurEnCours.setNom(nom);
 		AuteurDao.getInstance().update(auteurEnCours);
