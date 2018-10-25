@@ -1,15 +1,19 @@
 package fr.ul.miage.bibliotheque.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import fr.ul.miage.bibliotheque.control.EmpruntControl;
 import fr.ul.miage.bibliotheque.entite.Emprunt;
+import fr.ul.miage.bibliotheque.entite.Etat;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -33,10 +37,19 @@ public class EmpruntView implements View {
 		list.setItems(empruntControl.getEmpruntNonRendu());
 		list.setOnMouseClicked(event -> {
 			Emprunt emprunt = list.getSelectionModel().getSelectedItem();
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setHeaderText("Voulez vous valider le retour ?");
-			Optional<ButtonType> option = alert.showAndWait();
-			if (option.get() != null && option.get() == ButtonType.OK) {
+
+			List<Etat> choices = new ArrayList<>();
+			choices.addAll(empruntControl.getListeEtat());
+
+			ChoiceDialog<Etat> dialog = new ChoiceDialog<>(choices.get(0), choices);
+			dialog.setTitle("Retour Emprunt");
+			dialog.setHeaderText("Voulez vous valider l'emprunt ?");
+			dialog.setContentText("Choisir l'état de l'exemplaire :");
+
+			Optional<Etat> option = dialog.showAndWait();
+			if (option.isPresent() && emprunt != null) {
+				emprunt.getExemplaire().setEtat(option.get());
+				empruntControl.updateEtatExemplaire(emprunt.getExemplaire());
 				empruntControl.retourEmprunt(emprunt);
 				list.setItems(empruntControl.getEmpruntNonRendu());
 				list.refresh();

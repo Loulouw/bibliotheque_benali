@@ -23,7 +23,7 @@ public class ExemplaireView implements View {
 	@Override
 	public Pane getPane() {
 		exemplaireControl = new ExemplaireControl();
-				
+
 		HBox hbox = new HBox();
 		hbox.setPadding(new Insets(15, 12, 15, 12));
 		hbox.setSpacing(10);
@@ -41,7 +41,10 @@ public class ExemplaireView implements View {
 		TableColumn<Exemplaire, Etat> etatCol = new TableColumn<>("État");
 		etatCol.setCellValueFactory(new PropertyValueFactory<Exemplaire, Etat>("etat"));
 
-		tableExemplaire.getColumns().addAll(numeroCol, etatCol);
+		TableColumn<Exemplaire, Boolean> emprunterCol = new TableColumn<>("Emprunter");
+		emprunterCol.setCellValueFactory(new PropertyValueFactory<Exemplaire, Boolean>("emprunter"));
+
+		tableExemplaire.getColumns().addAll(numeroCol, etatCol, emprunterCol);
 		tableExemplaire.setItems(exemplaireControl.getListeExemplaire());
 
 		final Button buttonAjouterExemplaire = new Button("Ajouter Exemplaire");

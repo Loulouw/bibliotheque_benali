@@ -4,6 +4,7 @@ import fr.ul.miage.bibliotheque.view.AuteurView;
 import fr.ul.miage.bibliotheque.view.EmpruntView;
 import fr.ul.miage.bibliotheque.view.ExemplaireView;
 import fr.ul.miage.bibliotheque.view.OeuvreView;
+import fr.ul.miage.bibliotheque.view.ReservationView;
 import fr.ul.miage.bibliotheque.view.UsagerView;
 import fr.ul.miage.bibliotheque.view.View;
 import javafx.application.Application;
@@ -35,6 +36,7 @@ public class App extends Application {
 		tabPane.getTabs().add(createTabPane("Oeuvre", new OeuvreView()));
 		tabPane.getTabs().add(createTabPane("Exemplaire", new ExemplaireView()));
 		tabPane.getTabs().add(createTabPane("Emprunt", new EmpruntView()));
+		tabPane.getTabs().add(createTabPane("Reservation", new ReservationView()));
 
 		root.getChildren().add(tabPane);
 		primaryStage.setScene(new Scene(root, 500, 450));

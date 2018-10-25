@@ -4,10 +4,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import fr.ul.miage.bibliotheque.dao.EmpruntDao;
+import fr.ul.miage.bibliotheque.dao.EtatDao;
 import fr.ul.miage.bibliotheque.dao.ExemplaireDao;
 import fr.ul.miage.bibliotheque.dao.OeuvreDao;
 import fr.ul.miage.bibliotheque.dao.UsagerDao;
 import fr.ul.miage.bibliotheque.entite.Emprunt;
+import fr.ul.miage.bibliotheque.entite.Etat;
 import fr.ul.miage.bibliotheque.entite.Exemplaire;
 import fr.ul.miage.bibliotheque.entite.Oeuvre;
 import fr.ul.miage.bibliotheque.entite.Usager;
@@ -18,6 +20,8 @@ import javafx.collections.ObservableSet;
 public class EmpruntControl {
 
 	private ObservableSet<Emprunt> listeEmprunt;
+	
+	private ObservableList<Etat> listeEtat;
 
 	private Usager usagerTemp;
 
@@ -35,6 +39,10 @@ public class EmpruntControl {
 		listeEmprunt = FXCollections.observableSet();
 		listeEmprunt.addAll(EmpruntDao.getInstance().findAllEmpruntNonRendu());
 		return FXCollections.observableArrayList(listeEmprunt);
+	}
+	
+	public ObservableList<Etat> getListeEtat() {
+		return FXCollections.observableArrayList(EtatDao.getInstance().findAll());
 	}
 
 	public boolean rechercherEmprunt(String titreOeuvre, String nomUsager, String prenomUsager) {
@@ -60,6 +68,12 @@ public class EmpruntControl {
 		EmpruntDao.getInstance().create(emprunt);
 	}
 
+	public void updateEtatExemplaire(Exemplaire exemplaire) {
+		Exemplaire e = ExemplaireDao.getInstance().find(exemplaire.getId());
+		e.setEtat(exemplaire.getEtat());
+		ExemplaireDao.getInstance().update(e);
+	}
+	
 	public Usager getUsagerTemp() {
 		return usagerTemp;
 	}
