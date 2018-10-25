@@ -62,7 +62,7 @@ public class Exemplaire implements java.io.Serializable {
 		this.etat = etat;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_oeuvre", nullable = false)
 	public Oeuvre getOeuvre() {
 		return this.oeuvre;
@@ -80,5 +80,32 @@ public class Exemplaire implements java.io.Serializable {
 	public void setEmprunts(Set<Emprunt> emprunts) {
 		this.emprunts = emprunts;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Exemplaire other = (Exemplaire) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
+	
 
 }

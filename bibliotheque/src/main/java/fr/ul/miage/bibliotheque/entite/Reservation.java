@@ -49,7 +49,7 @@ public class Reservation implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_oeuvre", nullable = false)
 	public Oeuvre getOeuvre() {
 		return this.oeuvre;
@@ -59,7 +59,7 @@ public class Reservation implements java.io.Serializable {
 		this.oeuvre = oeuvre;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_usager", nullable = false)
 	public Usager getUsager() {
 		return this.usager;
@@ -86,6 +86,10 @@ public class Reservation implements java.io.Serializable {
 
 	public void setReservationAnnule(int reservationAnnule) {
 		this.reservationAnnule = reservationAnnule;
+	}
+	
+	public String toString() {
+		return usager.getNom() + " - " + oeuvre.getTitre();
 	}
 
 }

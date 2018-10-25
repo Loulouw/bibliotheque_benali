@@ -54,7 +54,7 @@ public class Emprunt implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_exemplaire", nullable = false)
 	public Exemplaire getExemplaire() {
 		return this.exemplaire;
@@ -64,7 +64,7 @@ public class Emprunt implements java.io.Serializable {
 		this.exemplaire = exemplaire;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_usager", nullable = false)
 	public Usager getUsager() {
 		return this.usager;
@@ -95,7 +95,7 @@ public class Emprunt implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_rendu", nullable = false, length = 19)
+	@Column(name = "date_rendu", nullable = true, length = 19)
 	public Date getDateRendu() {
 		return this.dateRendu;
 	}
@@ -111,6 +111,10 @@ public class Emprunt implements java.io.Serializable {
 
 	public void setEmpruntRendu(int empruntRendu) {
 		this.empruntRendu = empruntRendu;
+	}
+	
+	public String toString() {
+		return usager.getNom() + " : " + exemplaire.getOeuvre().getTitre();
 	}
 
 }
