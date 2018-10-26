@@ -43,7 +43,7 @@ public class EmpruntView implements View {
 
 			ChoiceDialog<Etat> dialog = new ChoiceDialog<>(choices.get(0), choices);
 			dialog.setTitle("Retour Emprunt");
-			dialog.setHeaderText("Voulez vous valider l'emprunt ?");
+			dialog.setHeaderText("Voulez vous valider le retour de l'emprunt ?");
 			dialog.setContentText("Choisir l'état de l'exemplaire :");
 
 			Optional<Etat> option = dialog.showAndWait();
