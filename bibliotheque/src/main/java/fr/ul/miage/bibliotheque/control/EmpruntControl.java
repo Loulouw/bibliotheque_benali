@@ -7,11 +7,13 @@ import fr.ul.miage.bibliotheque.dao.EmpruntDao;
 import fr.ul.miage.bibliotheque.dao.EtatDao;
 import fr.ul.miage.bibliotheque.dao.ExemplaireDao;
 import fr.ul.miage.bibliotheque.dao.OeuvreDao;
+import fr.ul.miage.bibliotheque.dao.ReservationDao;
 import fr.ul.miage.bibliotheque.dao.UsagerDao;
 import fr.ul.miage.bibliotheque.entite.Emprunt;
 import fr.ul.miage.bibliotheque.entite.Etat;
 import fr.ul.miage.bibliotheque.entite.Exemplaire;
 import fr.ul.miage.bibliotheque.entite.Oeuvre;
+import fr.ul.miage.bibliotheque.entite.Reservation;
 import fr.ul.miage.bibliotheque.entite.Usager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,6 +30,8 @@ public class EmpruntControl {
 	private Oeuvre oeuvreTemp;
 
 	private Exemplaire exemplaireTemp;
+	
+	private Reservation reservationTemp;
 
 	public void retourEmprunt(Emprunt emprunt) {
 		emprunt.setDateRendu(new Date());
@@ -46,11 +50,22 @@ public class EmpruntControl {
 	}
 
 	public boolean rechercherEmprunt(String titreOeuvre, String nomUsager, String prenomUsager) {
+		usagerTemp = null;
+		oeuvreTemp = null;
+		exemplaireTemp = null;
+		reservationTemp = null;
+		
 		usagerTemp = UsagerDao.getInstance().find(nomUsager, prenomUsager);
 		oeuvreTemp = OeuvreDao.getInstance().find(titreOeuvre);
 		exemplaireTemp = ExemplaireDao.getInstance().findExemlaireDisponible(titreOeuvre);
+		
+		boolean trouve = usagerTemp != null && oeuvreTemp != null && exemplaireTemp != null;
+		if(trouve) {
+			reservationTemp = ReservationDao.getInstance().findReservation(usagerTemp.getId(), oeuvreTemp.getId());
+		}
+		
 
-		return usagerTemp != null && oeuvreTemp != null && exemplaireTemp != null;
+		return trouve;
 	}
 
 	public void creerEmprunt() {
@@ -66,6 +81,9 @@ public class EmpruntControl {
 		emprunt.setExemplaire(ExemplaireDao.getInstance().find(exemplaireTemp.getId()));
 
 		EmpruntDao.getInstance().create(emprunt);
+		
+		reservationTemp.setReservationAnnule(1);
+		ReservationDao.getInstance().update(reservationTemp);
 	}
 
 	public void updateEtatExemplaire(Exemplaire exemplaire) {

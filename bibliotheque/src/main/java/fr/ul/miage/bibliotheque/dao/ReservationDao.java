@@ -28,8 +28,26 @@ public class ReservationDao extends Dao<Reservation> {
 		try {
 			HibernateUtil.openSessionAndBindToThread();
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-			
+
 			res.addAll(session.createQuery("FROM Reservation R WHERE R.reservationAnnule = 0").list());
+		} finally {
+			HibernateUtil.closeSessionAndUnbindFromThread();
+		}
+		return res;
+	}
+
+	public Reservation findReservation(int idUsager, int idOeuvre) {
+		Reservation res = null;
+		try {
+			HibernateUtil.openSessionAndBindToThread();
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+			List<Reservation> temp = session
+					.createQuery("FROM Reservation R WHERE R.reservationAnnule = 0 AND R.usager.id = " + idUsager
+							+ " AND R.oeuvre.id = " + idOeuvre)
+					.list();
+			if (!temp.isEmpty())
+				res = temp.get(0);
 		} finally {
 			HibernateUtil.closeSessionAndUnbindFromThread();
 		}

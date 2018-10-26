@@ -64,30 +64,36 @@ public class UsagerView implements View {
 
 		final TextField communeTexte = new TextField();
 		gp.add(communeTexte, 1, 3);
+		
+		final Label codePostal = new Label("Code postal :");
+		gp.add(codePostal, 0, 4);
+
+		final TextField codePostalTexte = new TextField();
+		gp.add(codePostalTexte, 1, 4);
 
 		final Label dateNaissance = new Label("Date de Naissance :");
-		gp.add(dateNaissance, 0, 4);
+		gp.add(dateNaissance, 0, 5);
 
 		final DatePicker dateNaissancePicker = new DatePicker();
 		dateNaissancePicker.setValue(LocalDate.now());
-		gp.add(dateNaissancePicker, 1, 4);
+		gp.add(dateNaissancePicker, 1, 5);
 
 		final Button mettreAJourUsager = new Button("Mettre à jour");
 		mettreAJourUsager.setOnAction(event -> {
 			usagerControl.updateUsager(prenomTexte.getText(), nomTexte.getText(), communeTexte.getText(),
-					dateNaissancePicker.getValue());
+					codePostalTexte.getText() ,dateNaissancePicker.getValue());
 			list.refresh();
 
 		});
 		mettreAJourUsager.setVisible(false);
-		gp.add(mettreAJourUsager, 0, 5);
+		gp.add(mettreAJourUsager, 0, 6);
 
 		final Button ajoutUsager = new Button("Ajouter usager");
 		ajoutUsager.setOnAction(event -> {
 			usagerControl.ajouterUsager(prenomTexte.getText(), nomTexte.getText(), communeTexte.getText(),
-					dateNaissancePicker.getValue());
+					codePostalTexte.getText() ,dateNaissancePicker.getValue());
 		});
-		gp.add(ajoutUsager, 1, 5);
+		gp.add(ajoutUsager, 1, 6);
 
 		// Section liste
 		list.setItems(usagerControl.getAllUsager());
@@ -99,6 +105,7 @@ public class UsagerView implements View {
 				nomTexte.setText(usagerControl.getUsagerEnCours().getNom());
 				prenomTexte.setText(usagerControl.getUsagerEnCours().getPrenom());
 				communeTexte.setText(usagerControl.getUsagerEnCours().getCommune());
+				codePostalTexte.setText(usagerControl.getUsagerEnCours().getCodePostal());
 				dateNaissancePicker
 						.setValue(Utils.dateToLocalDate(usagerControl.getUsagerEnCours().getDateNaissance()));
 				mettreAJourUsager.setVisible(true);

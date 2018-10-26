@@ -13,11 +13,12 @@ public class UsagerControl {
 	private ObservableList<Usager> listeUsager;
 
 	private Usager usagerEnCours = null;
-	
-	public boolean ajouterUsager(String prenom, String nom, String commune, LocalDate dateNaissance) {
+
+	public boolean ajouterUsager(String prenom, String nom, String commune, String codePostal,
+			LocalDate dateNaissance) {
 		boolean res = true;
 		try {
-			usagerEnCours = new Usager(prenom, nom, commune, Utils.localDateToDate(dateNaissance));
+			usagerEnCours = new Usager(prenom, nom, commune, codePostal, Utils.localDateToDate(dateNaissance));
 			UsagerDao.getInstance().create(usagerEnCours);
 			listeUsager.add(usagerEnCours);
 		} catch (RuntimeException re) {
@@ -25,11 +26,12 @@ public class UsagerControl {
 		}
 		return res;
 	}
-	
-	public void updateUsager(String prenom, String nom, String commune, LocalDate dateNaissance) {
+
+	public void updateUsager(String prenom, String nom, String commune, String codePostal, LocalDate dateNaissance) {
 		usagerEnCours.setPrenom(prenom);
 		usagerEnCours.setNom(nom);
 		usagerEnCours.setCommune(commune);
+		usagerEnCours.setCodePostal(codePostal);
 		usagerEnCours.setDateNaissance(Utils.localDateToDate(dateNaissance));
 		UsagerDao.getInstance().update(usagerEnCours);
 	}

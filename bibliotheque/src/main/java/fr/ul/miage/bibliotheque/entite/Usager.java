@@ -27,27 +27,19 @@ public class Usager implements java.io.Serializable {
 	private String nom;
 	private String commune;
 	private Date dateNaissance;
+	private String codePostal;
 	private Set<Emprunt> emprunts = new HashSet<Emprunt>(0);
 	private Set<Reservation> reservations = new HashSet<Reservation>(0);
 
 	public Usager() {
 	}
 
-	public Usager(String prenom, String nom, String commune, Date dateNaissance) {
+	public Usager(String prenom, String nom, String commune,String codePostal, Date dateNaissance) {
 		this.prenom = prenom;
 		this.nom = nom;
 		this.commune = commune;
 		this.dateNaissance = dateNaissance;
-	}
-
-	public Usager(String prenom, String nom, String commune, Date dateNaissance, Set<Emprunt> emprunts,
-			Set<Reservation> reservations) {
-		this.prenom = prenom;
-		this.nom = nom;
-		this.commune = commune;
-		this.dateNaissance = dateNaissance;
-		this.emprunts = emprunts;
-		this.reservations = reservations;
+		this.codePostal = codePostal;
 	}
 
 	@Id
@@ -111,6 +103,15 @@ public class Usager implements java.io.Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usager")
 	public Set<Reservation> getReservations() {
 		return this.reservations;
+	}
+	
+	@Column(name = "code_postal", nullable = false, length = 250)
+	public String getCodePostal() {
+		return codePostal;
+	}
+
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
 	}
 
 	public void setReservations(Set<Reservation> reservations) {
